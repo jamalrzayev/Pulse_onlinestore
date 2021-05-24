@@ -37,11 +37,15 @@
                 font-weight: 300;
                 text-align: center;
                 color: $text-black;
-            }
-            &_redrunning {
-                margin: 0 0;
-                color: #FF0000;
-                text-decoration: underline;
+                a {
+                    margin: 0 0;
+                    color: #FF0000;
+                    text-decoration: underline;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            
             }
         }
     }

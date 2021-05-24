@@ -1,0 +1,12 @@
+.title {
+    color: $text-black;
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    &_left {
+        color: $white-color;
+        font-size: 36px;
+        text-align: left;
+    }
+}
