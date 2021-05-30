@@ -20,21 +20,6 @@ $(document).ready(function(){
         .closest('div.container').find('div.catalogue__content').removeClass('catalogue__content_active').eq($(this).index()).addClass('catalogue__content_active');
     });
 
-    // $('.catalogue-item__link').each(function(i) {
-    //   $(this).on('click', function(e) {
-    //     e.preventDefault();
-    //     $('.catalogue-item__content').eq(i).toggleClass('catalogue-item__content_active');
-    //     $('.catalogue-item__list').eq(i).toggleClass('catalogue-item__list_active');
-    //   })
-    // });
-
-    // $('.catalogue-item__back').each(function(i) {
-    //   $(this).on('click', function(e) {
-    //     e.preventDefault();
-    //     $('.catalogue-item__content').eq(i).toggleClass('catalogue-item__content_active');
-    //     $('.catalogue-item__list').eq(i).toggleClass('catalogue-item__list_active');
-    //   })
-    // });
 
     function togglerSlide(item) {
       $(item).each(function(i) {
@@ -99,29 +84,19 @@ $(document).ready(function(){
 
     $('input[name=phone]').mask("+7 (999) 999-99-99");
     
-});         
-
-// const slider = tns({
-//     container: '.carousel__inner',
-//     items: 1,
-//     slideBy: 'page',
-//     autoplay: false,
-//     controls: false,
-//     nav: false
-//   });
-
-//   document.querySelector('.prev').addEventListener( 'click', function () {
-//     slider.goTo('prev');
-//   });
-
-//   document.querySelector('.next').addEventListener( 'click', function () {
-//     slider.goTo('next');
-//   });
-
-
-
-  // $('ul.catalogue__tabs').on('click', 'li:not(.catalogue__tab_active)', function() {
-  //   $(this)
-  //     .addClass('catalogue__tab_active').siblings().removeClass('catalogue__tab_active')
-  //     .closest('div.container').find('div.catalogue__content').removeClass('catalogue__content_active').eq($(this).index()).addClass('catalogue__content_active');
-  // });
+    $('form').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: "mailer/smart.php",
+        data: $(this).serialize()
+      }).done(function() {
+          $(this).find("input").val("");
+          $('#consultation, #order').fadeOut();
+          $('.overlay, #thanx').fadeIn('slow');
+          
+          $('form').trigger('reset');
+      });
+      return false;
+    });
+});
